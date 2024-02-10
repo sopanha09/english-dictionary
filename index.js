@@ -21,6 +21,7 @@ async function fetchAPI(word) {
 
     if (result.title) {
       meaningContainerEl.style.display = "block";
+      infoTextEl.style.display = "none";
 
       titleEl.innerText = word;
       meaningEl.innerText = "N/A";
@@ -36,6 +37,7 @@ async function fetchAPI(word) {
     }
   } catch (error) {
     console.log(error);
+    infoTextEl.innerText = `No definitions found, you can try the search again at later time.`;
   }
 }
 
