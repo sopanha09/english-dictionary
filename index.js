@@ -19,25 +19,21 @@ async function fetchAPI(word) {
 
     const result = await res.json();
 
-    if (result.title) {
-      meaningContainerEl.style.display = "block";
-      infoTextEl.style.display = "none";
+    infoTextEl.style.display = "none";
+    meaningContainerEl.style.display = "block";
+    audioEl.style.display = "inline-flex";
 
-      titleEl.innerText = word;
-      meaningEl.innerText = "N/A";
-      audioEl.style.display = "none";
-    } else {
-      infoTextEl.style.display = "none";
-      meaningContainerEl.style.display = "block";
-      audioEl.style.display = "inline-flex";
-
-      titleEl.innerText = result[0].word;
-      meaningEl.innerText = result[0].meanings[0].definitions[0].definition;
-      audioEl.src = result[0].phonetics[0].audio;
-    }
+    titleEl.innerText = result[0].word;
+    meaningEl.innerText = result[0].meanings[0].definitions[0].definition;
+    audioEl.src = result[0].phonetics[0].audio;
   } catch (error) {
     console.log(error);
-    infoTextEl.innerText = `No definitions found, you can try the search again at later time.`;
+    meaningContainerEl.style.display = "block";
+    infoTextEl.style.display = "none";
+
+    titleEl.innerText = word;
+    meaningEl.innerText = "N/A";
+    audioEl.style.display = "none";
   }
 }
 
